@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath="$PWD/django_playground_repo" django_playground.config.wsgi:application
+web: gunicorn --pythonpath="$PWD/django_playground_repo" config.wsgi:application
