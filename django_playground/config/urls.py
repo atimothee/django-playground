@@ -27,6 +27,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable avatars
     url(r'^avatar/', include('avatar.urls')),
+    url(r'^animalia/', include('animalia.urls')),
 
     # Your stuff: custom urls go here
 
