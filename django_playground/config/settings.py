@@ -52,8 +52,9 @@ class Common(Configuration):
 
     # Apps specific for this project go here.
     LOCAL_APPS = (
-        'users',  # custom users app
-        # Your stuff: custom apps go here
+        'users',
+        'animalia',
+        'movie_library'
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -65,7 +66,6 @@ class Common(Configuration):
         'allauth',  # registration
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
-        'animalia'
     )
     ########## END APP CONFIGURATION
 
