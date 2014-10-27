@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-{% block title%} Catalog - List{% endblock %}
+{% block title%} Animal Catalog - List{% endblock %}
 {% block content %}
 {% if animals%}
 {% for animal in animals%}
 <div class="col-md-3">
+    <h3>Animalia</h3>
     <h5>Filter Animals</h5>
-    <form action="/animals/list" method="get">
+    <form action="/animalia/animals/list" method="get">
         <div class="form-input">
             <label>Name</label>
             <input name="name" class="form-control">
@@ -22,7 +23,7 @@
 <div class="col-md-2">
     <div class="thumbnail">
 
-        <a href="/id/{{animal.id}}">
+        <a href="/animalia/id/{{animal.id}}">
 
             <img src="{{animal.image.url}}">
         </a>

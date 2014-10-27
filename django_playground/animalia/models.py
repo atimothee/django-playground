@@ -40,5 +40,7 @@ class Animal(models.Model):
     image = models.ImageField(upload_to="images", blank=True)
     description = models.TextField(blank=True)
     species = models.ForeignKey(Species)
+    views = models.IntegerField(default=0)
+    admin_notes = models.TextField(blank=True)
     def __unicode__(self):
         return self.name

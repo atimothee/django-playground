@@ -1,5 +1,24 @@
 {% extends "base.html" %}
-        {% block title%} Animalia - Home {% endblock %}
-        {% block content %}
-            <h4>Welcome to the animal catalogue</h4>
-        {% endblock %}
+{% block title%} Animalia - Home {% endblock %}
+{% block content %}
+<h4>Welcome to <b><i>animalia</i></b> - your ultimate animal kingdom catalogue</h4>
+<div col-md-8>
+    <h3>Popular</h3>
+    {% for animal in popular%}
+    <div class="col-md-2">
+        <div class="thumbnail">
+
+            <a href="/animalia/id/{{animal.id}}">
+
+                <img src="{{animal.image.url}}">
+            </a>
+
+            <div class="caption">
+                <p>{{animal.description}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <a href="/animalia/animals/list"><h4>View All animals</h4></a>
+</div>
+{% endblock %}
