@@ -119,7 +119,7 @@ class Common(Configuration):
     ########## DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
     DATABASES = values.DatabaseURLValue('mysql://root:timo@127.0.0.1/django_playground', engine='django_mysqlpool.backends.mysqlpool')
-    # DATABASES['default']['ENGINE'] = 'django_mysqlpool.backends.mysqlpool'
+    #DATABASES['default']['ENGINE'] = 'django_mysqlpool.backends.mysqlpool'
 
     SOUTH_DATABASE_ADAPTERS = {
         'default': "south.db.mysql"
@@ -311,6 +311,7 @@ class Production(Common):
     ########## INSTALLED_APPS
     INSTALLED_APPS = Common.INSTALLED_APPS
     ########## END INSTALLED_APPS
+    DATABASES = values.DatabaseURLValue('mysql://bf00326ac9af0b:2a11c117@us-cdbr-iron-east-01.cleardb.net/heroku_1ee383b07f1370f?reconnect=true', engine='django_mysqlpool.backends.mysqlpool')
 
     ########## SECRET KEY
     SECRET_KEY = values.SecretValue()
