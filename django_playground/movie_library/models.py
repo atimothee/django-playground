@@ -18,7 +18,6 @@ class Writer(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=40)
     email = models.EmailField()
-    headshot = models.ImageField(upload_to='/tmp', null=True)
 
 class Director(models.Model):
     salutation = models.CharField(max_length=10)
@@ -26,7 +25,6 @@ class Director(models.Model):
     last_name = models.CharField(max_length=40)
     email = models.EmailField()
     nick_name = models.CharField(max_length=30)
-    headshot = models.ImageField(upload_to='/tmp', null=True)
 
 class Movie(models.Model):
     title = models.CharField(max_length=100)
