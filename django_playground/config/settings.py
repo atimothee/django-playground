@@ -65,7 +65,8 @@ class Common(Configuration):
         'allauth',  # registration
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
-        'animalia'
+        'animalia',
+        'movie_library'
     )
     ########## END APP CONFIGURATION
 
@@ -311,7 +312,6 @@ class Production(Common):
     ########## INSTALLED_APPS
     INSTALLED_APPS = Common.INSTALLED_APPS
     ########## END INSTALLED_APPS
-    DATABASES = values.DatabaseURLValue('mysql://bf00326ac9af0b:2a11c117@us-cdbr-iron-east-01.cleardb.net/heroku_1ee383b07f1370f?reconnect=true', engine='django_mysqlpool.backends.mysqlpool')
 
     ########## SECRET KEY
     SECRET_KEY = values.SecretValue()

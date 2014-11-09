@@ -33,4 +33,4 @@ class Movie(models.Model):
     synopsis = models.TextField(blank=True)
     studio = models.ForeignKey(Studio)
     release_date = models.DateField()
-    headshot = models.ImageField(upload_to='/cover_art')
+    cover_art = models.ImageField(upload_to='/cover_art')
