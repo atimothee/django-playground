@@ -1,8 +1,40 @@
 {% extends "base.html" %}
         {% block content %}
-        <p>This playground has two apps</p>
-        <ul>
-            <li><a href="/animalia">Animalia App</a></li>
-            <li><a href="/movies">Movie Library App</a></li>
-        </ul>
+
+        <div class="section">
+	    	<div class="container">
+	    		<h2>The Apps</h2>
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<div class="portfolio-item">
+							<div class="portfolio-image">
+								<a href="/animalia"><img src="img/portfolio1.jpg" alt="Animalia"></a>
+							</div>
+							<div class="portfolio-info">
+								<ul>
+									<li class="portfolio-project-name">Animalia</li>
+									<li>Animal Kingdom Catalog</li>
+									<li class="read-more"><a href="/animalia" class="btn">Take me there</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="portfolio-item">
+							<div class="portfolio-image">
+								<a href="page-portfolio-item.html"><img src="img/portfolio2.jpg" alt="tmDB"></a>
+							</div>
+							<div class="portfolio-info">
+								<ul>
+									<li class="portfolio-project-name">tmDB</li>
+									<li>Timo's movie database</li>
+									<li class="read-more"><a href="/movies" class="btn">Take me there</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
         {% endblock%}

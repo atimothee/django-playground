@@ -12,6 +12,7 @@ def movie_list(request):
     return render_to_response('movie_library/movie_list.html', {'movies_active':'active'})
 
 def movie_directors(request):
+    #directors = Director
     return render_to_response('movie_library/directors.html', {'directors_active':'active'})
 
 class MovieDetail(DetailView):
