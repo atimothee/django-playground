@@ -52,9 +52,8 @@ class Common(Configuration):
 
     # Apps specific for this project go here.
     LOCAL_APPS = (
-        'users',
-        'animalia',
-        'movie_library'
+        'users',  # custom users app
+        # Your stuff: custom apps go here
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -66,6 +65,8 @@ class Common(Configuration):
         'allauth',  # registration
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
+        'animalia',
+        'movie_library'
     )
     ########## END APP CONFIGURATION
 
@@ -119,7 +120,7 @@ class Common(Configuration):
     ########## DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
     DATABASES = values.DatabaseURLValue('mysql://root:timo@127.0.0.1/django_playground', engine='django_mysqlpool.backends.mysqlpool')
-    # DATABASES['default']['ENGINE'] = 'django_mysqlpool.backends.mysqlpool'
+    #DATABASES['default']['ENGINE'] = 'django_mysqlpool.backends.mysqlpool'
 
     SOUTH_DATABASE_ADAPTERS = {
         'default': "south.db.mysql"
@@ -392,9 +393,24 @@ class Production(Common):
     )
     ########## END TEMPLATE CONFIGURATION
 
+    # ########## CACHING
+    # # Only do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
+    # CACHES = values.CacheURLValue(default="memcached://127.0.0.1:11211")
+    # ########## END CACHING
     ########## CACHING
-    # Only do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
-    CACHES = values.CacheURLValue(default="memcached://127.0.0.1:11211")
-    ########## END CACHING
 
-    ########## Your production stuff: Below this line define 3rd party libary settings
+    os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '')
+    os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
+    os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
+
+    CACHES = {
+      'default': {
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+        'LOCATION': os.environ.get('MEMCACHIER_SERVERS', ''),
+        'TIMEOUT': 500,
+        'BINARY': True,
+        'OPTIONS': { 'tcp_nodelay': True }
+      }
+    }
+
+    ########## END CACHING

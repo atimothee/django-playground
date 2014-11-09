@@ -7,9 +7,14 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
 # Uncomment the next two lines to enable the admin:
-from django.contrib import admin
+#from django.contrib import admin
 from animalia import admin
 #admin.autodiscover()
+
+handler404 = 'movie_library.views.my_404_view'
+handler500 = 'movie_library.views.my_500_view'
+handler403 = 'movie_library.views.my_403_view'
+handler400 = 'movie_library.views.my_500_view'
 
 urlpatterns = patterns('',
     url(r'^$',
@@ -29,6 +34,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable avatars
     url(r'^avatar/', include('avatar.urls')),
     url(r'^animalia/', include('animalia.urls')),
+    url(r'^movies/', include('movie_library.urls')),
 
     # Your stuff: custom urls go here
 
