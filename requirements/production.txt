@@ -9,3 +9,4 @@ gevent==1.0
 boto==2.25.0
 python-memcached==1.53
 psycopg2
+django-pylibmc-sasl==0.2.4
