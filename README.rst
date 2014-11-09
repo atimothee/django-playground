@@ -75,6 +75,6 @@ Run these commands to deploy the project to Heroku:
     heroku config:set DJANGO_AWS_SECRET_ACCESS_KEY=YOUR_KEY
     heroku config:set DJANGO_AWS_STORAGE_BUCKET_NAME=BUCKET
     git push heroku master
-    heroku run python django_playground_repo/manage.py syncdb --noinput --settings=config.settings
-    heroku run python django_playground_repo/manage.py migrate --settings=config.settings
-    heroku run python django_playground_repo/manage.py collectstatic --settings=config.settings
+    heroku run python django_playground/manage.py syncdb --noinput --settings=config.settings
+    heroku run python django_playground/manage.py migrate --settings=config.settings
+    heroku run python django_playground/manage.py collectstatic --settings=config.settings
