@@ -412,5 +412,7 @@ class Production(Common):
         'OPTIONS': { 'tcp_nodelay': True }
       }
     }
+    DEBUG = False
+    TEMPLATE_DEBUG = False
 
     ########## END CACHING
