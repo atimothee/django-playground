@@ -52,8 +52,9 @@ class Common(Configuration):
 
     # Apps specific for this project go here.
     LOCAL_APPS = (
-        'users',  # custom users app
-        # Your stuff: custom apps go here
+        'users',
+        'animalia',
+        'movie_library'
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -65,8 +66,6 @@ class Common(Configuration):
         'allauth',  # registration
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
-        'animalia',
-        'movie_library'
     )
     ########## END APP CONFIGURATION
 
@@ -120,7 +119,7 @@ class Common(Configuration):
     ########## DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
     DATABASES = values.DatabaseURLValue('mysql://root:timo@127.0.0.1/django_playground', engine='django_mysqlpool.backends.mysqlpool')
-    #DATABASES['default']['ENGINE'] = 'django_mysqlpool.backends.mysqlpool'
+    # DATABASES['default']['ENGINE'] = 'django_mysqlpool.backends.mysqlpool'
 
     SOUTH_DATABASE_ADAPTERS = {
         'default': "south.db.mysql"
@@ -341,12 +340,12 @@ class Production(Common):
 
     ########## STORAGE CONFIGURATION
     # See: http://django-storages.readthedocs.org/en/latest/index.html
-    # INSTALLED_APPS += (
-    #     'storages',
-    # )
+    INSTALLED_APPS += (
+        'storages',
+    )
 
     # See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings
-    #STATICFILES_STORAGE = DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    STATICFILES_STORAGE = DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
     # See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings
     AWS_ACCESS_KEY_ID = values.SecretValue()
@@ -367,7 +366,7 @@ class Production(Common):
     }
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-    #STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+    STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
     ########## END STORAGE CONFIGURATION
 
     ########## EMAIL
@@ -393,41 +392,9 @@ class Production(Common):
     )
     ########## END TEMPLATE CONFIGURATION
 
-    # ########## CACHING
-    # # Only do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
-    # CACHES = values.CacheURLValue(default="memcached://127.0.0.1:11211")
-    # ########## END CACHING
     ########## CACHING
-
-    os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '')
-    os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
-    os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
-
-    CACHES = {
-      'default': {
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': os.environ.get('MEMCACHIER_SERVERS', ''),
-        'TIMEOUT': 500,
-        'BINARY': True,
-        'OPTIONS': { 'tcp_nodelay': True }
-      }
-    }
-
+    # Only do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
+    CACHES = values.CacheURLValue(default="memcached://127.0.0.1:11211")
     ########## END CACHING
 
     ########## Your production stuff: Below this line define 3rd party libary settings
-    STATIC_ROOT = join(os.path.dirname(BASE_DIR), 'staticfiles')
-
-    # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-    STATIC_URL = '/static/'
-
-    # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-    STATICFILES_DIRS = (
-        join(BASE_DIR, 'static'),
-    )
-
-    # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
-    STATICFILES_FINDERS = (
-        'django.contrib.staticfiles.finders.FileSystemFinder',
-        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    )

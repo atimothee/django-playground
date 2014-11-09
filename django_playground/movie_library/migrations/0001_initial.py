@@ -35,6 +35,7 @@ class Migration(SchemaMigration):
             ('first_name', self.gf('django.db.models.fields.CharField')(max_length=30)),
             ('last_name', self.gf('django.db.models.fields.CharField')(max_length=40)),
             ('email', self.gf('django.db.models.fields.EmailField')(max_length=75)),
+            ('headshot', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True)),
         ))
         db.send_create_signal(u'movie_library', ['Writer'])
 
@@ -46,6 +47,7 @@ class Migration(SchemaMigration):
             ('last_name', self.gf('django.db.models.fields.CharField')(max_length=40)),
             ('email', self.gf('django.db.models.fields.EmailField')(max_length=75)),
             ('nick_name', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('headshot', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True)),
         ))
         db.send_create_signal(u'movie_library', ['Director'])
 
@@ -107,6 +109,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Director'},
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
+            'headshot': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
             'nick_name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
@@ -143,6 +146,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Writer'},
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
+            'headshot': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
             'salutation': ('django.db.models.fields.CharField', [], {'max_length': '10'})
