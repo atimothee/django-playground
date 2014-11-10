@@ -47,5 +47,6 @@ class Movie(models.Model):
     release_year = models.IntegerField(blank=True)
     cover_art = models.ImageField(upload_to='/cover_art')
     is_featured = models.BooleanField(default=False)
+    views = models.IntegerField()
     def __unicode__(self):
         return self.title
