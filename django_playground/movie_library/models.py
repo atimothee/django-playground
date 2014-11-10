@@ -31,9 +31,9 @@ class Actor(models.Model):
         return self.first_name+" "+self.last_name
 
 class Director(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=40)
-    nick_name = models.CharField(max_length=30, blank=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    nick_name = models.CharField(max_length=100, blank=True)
     def __unicode__(self):
         return self.first_name+" "+self.last_name
 
@@ -45,7 +45,7 @@ class Movie(models.Model):
     synopsis = models.TextField(blank=True)
     studio = models.ForeignKey(Studio, blank=True, null=True)
     release_year = models.IntegerField(blank=True)
-    cover_art = models.ImageField(upload_to='/cover_art')
+    cover_art = models.ImageField(upload_to='cover_art')
     is_featured = models.BooleanField(default=False)
     views = models.IntegerField()
     def __unicode__(self):
