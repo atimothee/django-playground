@@ -1,54 +1,65 @@
 {% extends "animalia/base.html" %}
 {% block title%} Animal Catalog - List{% endblock %}
 {% block content %}
-        <div class="section section-breadcrumbs">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h1>Featured Movies</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-
-        <div class="section">
-	    	<div class="container">
-				<div class="row">
-{% if animals%}
-
-<div class="col-md-3">
-    <h3>Animalia</h3>
-    <h5>Search</h5>
-    <form action="/animalia/animals/list" method="get">
-        <div class="form-input">
-            <label>Name</label>
-            <input name="name" class="form-control">
-        </div>
-        <div class="form-input">
-            <label>Family</label>
-            <input name="family" class="form-control">
-        </div>
-        <br>
-        <button class="btn btn-sm" type="submit">Filter</button>
-    </form>
-
-</div>
-        {% for animal in animals%}
-<div class="col-md-2">
-    <div class="thumbnail">
-
-        <a href="/animalia/id/{{animal.id}}">
-
-            <img src="{{animal.image.url}}">
-        </a>
-
-        <div class="caption">
-            <p>{{animal.description}}</p>
+<div class="section section-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>The Animal Catalogue</h1>
+            </div>
         </div>
     </div>
 </div>
-{% endfor%}
-{% else %}
-No animals to show
-{%endif%}
-{% endblock %}
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            {% if animals%}
+                {% for animal in animals%}
+            <div class="col-sm-3">
+                <div class="shop-item">
+                    <!-- Product Image -->
+                    <div class="image">
+                        <a href="/animalia/id/{{animal.id}}"><img src="{{animal.image.url}}" alt="{{animal.name}}"></a>
+                    </div>
+                    <!-- Product Title -->
+                    <div class="title">
+                        <h3><a href="/animalia/id/{{animal.id}}">{{animal.name}}</a></h3>
+                    </div>
+                    <!-- Product Description-->
+                    <div class="description">
+                        <p>{{animal.description | truncatechars:100}}</p>
+                    </div>
+                    <!-- Add to Cart Button -->
+                    <div class="actions">
+                        <a href="/animalia/id/{{animal.id}}" class="btn">Read more...</a>
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+            {% else %}
+            <p>No animals to show</p>
+            {%endif%}
+        </div>
+    </div>
+</div>
+
+<!--<div class="col-md-3">-->
+    <!--<h3>Animalia</h3>-->
+    <!--<h5>Search</h5>-->
+
+    <!--<form action="/animalia/animals/list" method="get">-->
+        <!--<div class="form-input">-->
+            <!--<label>Name</label>-->
+            <!--<input name="name" class="form-control">-->
+        <!--</div>-->
+        <!--<div class="form-input">-->
+            <!--<label>Family</label>-->
+            <!--<input name="family" class="form-control">-->
+        <!--</div>-->
+        <!--<br>-->
+        <!--<button class="btn btn-sm" type="submit">Filter</button>-->
+    <!--</form>-->
+
+<!--</div>-->
+        {% endblock content%}

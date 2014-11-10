@@ -1,19 +1,80 @@
 {% extends "animalia/base.html" %}
 {% block title%} Animal Detail{% endblock %}
 {% block content %}
-        <div class="md-5">
-            <img class="col-md-5" src="{{object.image.url}}">
-        </div>
-        <div class="md-5">
-            <p>Name - {{object.name}}</p>
-            <p>Description - {{object.description}}</p>
-            <p>Species - {{object.species.name}}</p>
-            <p>Genus - {{object.species.genus.name}}</p>
-            <p>Family - {{object.species.genus.family.name}}</p>
-            <p>Order - {{object.species.genus.family.order.name}}</p>
-            <p>Class - {{object.species.genus.family.order.classe.name}}</p>
-            <p>Phylum - {{object.species.genus.family.order.classe.phylum.name}}</p>
-            <p>Views - {{object.views}}</p>
-        </div>
+        <!--<div class="md-5">-->
+            <!--<img class="col-md-5" src="{{object.image.url}}">-->
+        <!--</div>-->
+        <!--<div class="md-5">-->
+            <!--<p>Name - {{object.name}}</p>-->
+            <!--<p>Description - {{object.description}}</p>-->
+            <!--<p>Species - {{object.species.name}}</p>-->
+            <!--<p>Genus - {{object.species.genus.name}}</p>-->
+            <!--<p>Family - {{object.species.genus.family.name}}</p>-->
+            <!--<p>Order - {{object.species.genus.family.order.name}}</p>-->
+            <!--<p>Class - {{object.species.genus.family.order.classe.name}}</p>-->
+            <!--<p>Phylum - {{object.species.genus.family.order.classe.phylum.name}}</p>-->
+            <!--<p>Views - {{object.views}}</p>-->
+        <!--</div>-->
+        <!-- Page Title -->
+		<div class="section section-breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<h1>{{object.name}}</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+
+        <div class="section">
+	    	<div class="container">
+				<div class="row">
+					<!-- Image Column -->
+					<div class="col-sm-6">
+						<div class="portfolio-item">
+							<div class="portfolio-image">
+								<a href="{{object.image.url}}"><img src="{{object.image.url}}" alt="{{object.name}}"></a>
+							</div>
+						</div>
+					</div>
+					<!-- End Image Column -->
+					<!-- Project Info Column -->
+					<div class="portfolio-item-description col-sm-6">
+						<h3>Description</h3>
+						<p>{{object.description | linebreaks}}</p>
+						<ul class="no-list-style">
+							<li><b>Views:</b> {{object.views}}</li>
+							<li><b>Species:</b> {{object.species.name}}</li>
+							<li><b>Genus:</b> {{object.species.genus.name}}</li>
+							<li><b>Family:</b> {{object.species.genus.family.name}}</li>
+							<li><b>Order:</b> {{object.species.genus.family.order.name}}</li>
+							<li><b>Class:</b> {{object.species.genus.family.order.classe.name}}</li>
+							<li><b>Phylum:</b> {{object.species.genus.family.order.classe.phylum.name}}</li>
+						</ul>
+					</div>
+					<!-- End Project Info Column -->
+				</div>
+				<!-- Related Projects -->
+				<h3>Related Animals</h3>
+				<div class="row">
+                    {% for a in related%}
+					<div class="col-md-4 col-sm-6">
+						<div class="portfolio-item">
+							<div class="portfolio-image">
+								<a href="/animalia/id/{{a.id}}"><img src="{{a.image.url}}" alt="{{a.name}}"></a>
+							</div>
+							<div class="portfolio-info-fade">
+								<ul>
+									<li class="portfolio-project-name">{{a.name}}</li>
+									<li class="read-more"><a href="/animalia/id/{{a.id}}" class="btn">Read more</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+                    {% endfor %}
+				</div>
+				<!-- End Related Projects -->
+			</div>
+		</div>
 
 {% endblock %}
