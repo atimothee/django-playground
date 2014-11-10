@@ -62,12 +62,12 @@
 						<li class="{{movies_active}}">
 							<a href="/movies/list">Movies</a>
 						</li>
-                        <li class="{{directors_active}}">
-							<a href="movies/directors">Directors</a>
-						</li>
-                        <li class="{{actors_active}}">
-							<a href="/movies/actors">Actors</a>
-						</li>
+                        <!--<li class="{{directors_active}}">-->
+							<!--<a href="movies/directors">Directors</a>-->
+						<!--</li>-->
+                        <!--<li class="{{actors_active}}">-->
+							<!--<a href="/movies/actors">Actors</a>-->
+						<!--</li>-->
                         {% if request.user.is_authenticated %}
                         <!--<li class="{{logout_active}}"><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>-->
                         <li class="{{dashboard_active}}"><a href="/movies/dashboard">Dashboard</a></li>
