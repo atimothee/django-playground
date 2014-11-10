@@ -7,7 +7,7 @@ from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from forms import MovieForm
+from forms import MovieForm, ActorForm, GenreForm, DirectorForm, WriterForm
 
 def home(request):
     movies_list = Movie.objects.filter(is_featured=True)
@@ -71,3 +71,58 @@ def dashboard_add_movie(request):
         form = MovieForm()
         return render_to_response("movie_library/dashboard/add_movie.html", {"form": form, 'dashboard_active':'active'}, context)
 
+@login_required
+def dashboard_add_actor(request):
+    context = RequestContext(request)
+    if request.method == 'POST':
+        form = ActorForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/movies/dashboard')
+        return render_to_response("movie_library/dashboard/add_actor.html", {"form": form, 'dashboard_active':'active'}, context)
+
+    elif request.method == 'GET':
+        form = ActorForm()
+        return render_to_response("movie_library/dashboard/add_actor.html", {"form": form, 'dashboard_active':'active'}, context)
+
+@login_required
+def dashboard_add_director(request):
+    context = RequestContext(request)
+    if request.method == 'POST':
+        form = DirectorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/movies/dashboard')
+        return render_to_response("movie_library/dashboard/add_director.html", {"form": form, 'dashboard_active':'active'}, context)
+
+    elif request.method == 'GET':
+        form = DirectorForm()
+        return render_to_response("movie_library/dashboard/add_director.html", {"form": form, 'dashboard_active':'active'}, context)
+
+@login_required
+def dashboard_add_writer(request):
+    context = RequestContext(request)
+    if request.method == 'POST':
+        form = WriterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/movies/dashboard')
+        return render_to_response("movie_library/dashboard/add_writer.html", {"form": form, 'dashboard_active':'active'}, context)
+
+    elif request.method == 'GET':
+        form = WriterForm()
+        return render_to_response("movie_library/dashboard/add_writer.html", {"form": form, 'dashboard_active':'active'}, context)
+
+@login_required
+def dashboard_add_genre(request):
+    context = RequestContext(request)
+    if request.method == 'POST':
+        form = GenreForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/movies/dashboard')
+        return render_to_response("movie_library/dashboard/add_genre.html", {"form": form, 'dashboard_active':'active'}, context)
+
+    elif request.method == 'GET':
+        form = GenreForm()
+        return render_to_response("movie_library/dashboard/add_genre.html", {"form": form, 'dashboard_active':'active'}, context)

@@ -6,12 +6,6 @@ class MovieForm(forms.ModelForm):
     class Meta:
         model = Movie
         exclude = ('uploaded_by',)
-    def save_model(self, request, obj, form, change):
-        if not change:
-            obj.uploaded_by = request.user
-            obj.save()
-        else:
-            super(MovieForm, self).save_model(request, obj, form, change)
 
 class WriterForm(forms.ModelForm):
     class Meta:
@@ -24,3 +18,7 @@ class DirectorForm(forms.ModelForm):
 class ActorForm(forms.ModelForm):
     class Meta:
         model = Actor
+
+class GenreForm(forms.ModelForm):
+    class Meta:
+        model = Genre

@@ -12,4 +12,8 @@ urlpatterns = patterns('',
     url(r'^directors$', 'movie_library.views.movie_directors'),
     (r'^dashboard/$', 'movie_library.views.dashboard'),
     (r'^dashboard/add/movie$', 'movie_library.views.dashboard_add_movie'),
+    (r'^dashboard/add/director$', 'movie_library.views.dashboard_add_director'),
+    (r'^dashboard/add/writer$', 'movie_library.views.dashboard_add_writer'),
+    (r'^dashboard/add/actor$', 'movie_library.views.dashboard_add_actor'),
+    (r'^dashboard/add/genre$', 'movie_library.views.dashboard_add_genre'),
 )

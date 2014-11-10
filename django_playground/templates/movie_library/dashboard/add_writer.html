@@ -1,0 +1,30 @@
+{% extends "movie_library/base.html" %}
+        {% load bootstrap %}
+        {% block title %}tmDB Dashboard - Add Writer{% endblock %}
+        {% block content %}
+
+<!-- Page Title -->
+		<div class="section section-breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1>Dashboard - Add Writer</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+        <div class="section">
+	    	<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+                        <form action="/movies/dashboard/add/writer" method="post">
+                            {% csrf_token%}
+                            {{form | bootstrap}}
+                            <input class="btn" type="submit" value="Add Writer">
+                        </form>
+					</div>
+				</div>
+			</div>
+		</div>
+        {% endblock %}
