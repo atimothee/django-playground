@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 # Create your models here.
 class Studio(models.Model):
@@ -58,6 +59,7 @@ class Movie(models.Model):
     cover_art = models.ImageField(upload_to='cover_art')
     is_featured = models.BooleanField(default=False)
     rating = models.ForeignKey(Rating, blank=True, null=True)
+    uploaded_by = models.ForeignKey(User)
     def __unicode__(self):
         return self.title
 

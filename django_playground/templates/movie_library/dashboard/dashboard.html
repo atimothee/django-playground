@@ -1,0 +1,47 @@
+{% extends "movie_library/base.html" %}
+        {% block title%}tmDB - Dashboard{% endblock %}
+        {% block content %}
+<!-- Page Title -->
+		<div class="section section-breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1>Dashboard</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+        <div class="section">
+	    	<div class="container">
+				<div class="row">
+                    <div class="col-md-12">
+                        <a href="/movies/dashboard/add/movie" class="btn">Add Movie</a>
+                        <a href="/movies/dashboard/add/director" class="btn">Add Director</a>
+                        <a href="/movies/dashboard/add/writer" class="btn">Add Writer</a>
+                        <a href="/movies/dashboard/add/genre" class="btn">Add Genre</a>
+                    </div>
+                    <h2>Movies uploaded by you</h2>
+
+					 {% for m in movies %}
+                    <div class="col-sm-4">
+						<div class="shop-item">
+							<div class="image">
+								<a href="/movies/id/{{m.id}}"><img src="{{m.cover_art.url}}" alt="{{m.title}}"></a>
+							</div>
+							<div class="title">
+								<h3><a href="/movies/id/{{m.id}}">{{m.title}}</a></h3>
+							</div>
+							<div class="description">
+								<p>{{m.synopsis | truncatechars:100}}</p>
+							</div>
+                            <div class="actions">
+								<a href="/dashboard/delete/movie/id" class="btn btn-red btn-small">Delete</a>
+							</div>
+						</div>
+					</div>
+                    {% endfor %}
+				</div>
+			</div>
+		</div>
+        {% endblock %}

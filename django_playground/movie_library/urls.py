@@ -10,4 +10,6 @@ urlpatterns = patterns('',
     url(r'^list$', 'movie_library.views.movie_list'),
     url(r'^id/(?P<pk>[-_\w]+)/$', MovieDetail.as_view()),
     url(r'^directors$', 'movie_library.views.movie_directors'),
+    (r'^dashboard/$', 'movie_library.views.dashboard'),
+    (r'^dashboard/add/movie$', 'movie_library.views.dashboard_add_movie'),
 )

@@ -4,11 +4,25 @@ from django.views.generic import DetailView
 from django.http import Http404
 from django.db.models import F
 from django.template import RequestContext
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from forms import MovieForm
 
 def home(request):
-    return render_to_response('movie_library/home.html', {'home_active':'active', 'movies': Movie.objects.all()[:5]}, RequestContext(request))
+    movies_list = Movie.objects.filter(is_featured=True)
+    paginator = Paginator(movies_list, 6)
+    page = request.GET.get('page')
+    try:
+        movies = paginator.page(page)
+    except PageNotAnInteger:
+        movies = paginator.page(1)
+    except EmptyPage:
+        movies = paginator.page(paginator.num_pages)
+    return render_to_response('movie_library/home.html', {'home_active':'active', 'movies': movies}, RequestContext(request))
 
 def movie_list(request):
+
     return render_to_response('movie_library/movie_list.html', {'movies_active':'active'})
 
 def movie_directors(request):
@@ -33,3 +47,27 @@ def my_403_view(request):
 
 def my_500_view(request):
     return render_to_response('movie_library/500.html', {}, RequestContext(request))
+
+@login_required
+def dashboard(request):
+    context = RequestContext(request)
+    movies = Movie.objects.filter(uploaded_by=request.user)
+    #movie_form = ProductForm()
+    return render_to_response("movie_library/dashboard/dashboard.html", {'movies': movies, "movie_form": '', 'dashboard_active':'active'}, context)
+
+@login_required
+def dashboard_add_movie(request):
+    context = RequestContext(request)
+    if request.method == 'POST':
+        form = MovieForm(request.POST, request.FILES)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.uploaded_by = request.user
+            obj.save()
+            return HttpResponseRedirect('/movies/dashboard')
+        return render_to_response("movie_library/dashboard/add_movie.html", {"form": form, 'dashboard_active':'active'}, context)
+
+    elif request.method == 'GET':
+        form = MovieForm()
+        return render_to_response("movie_library/dashboard/add_movie.html", {"form": form, 'dashboard_active':'active'}, context)
+

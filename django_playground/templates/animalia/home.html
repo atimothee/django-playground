@@ -1,24 +1,102 @@
 {% extends "animalia/base.html" %}
 {% block title%} Animalia - Home {% endblock %}
 {% block content %}
-<h4>Welcome to <b><i>animalia</i></b> - your ultimate animal kingdom catalogue</h4>
-<div col-md-8>
-    <h3>Popular</h3>
-    {% for animal in popular%}
-    <div class="col-md-2">
-        <div class="thumbnail">
+        <div class="section section-breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1>Popular Animals</h1>
+					</div>
+				</div>
+			</div>
+		</div>
 
-            <a href="/animalia/id/{{animal.id}}">
 
-                <img src="{{animal.image.url}}">
-            </a>
+        <div class="section">
+	    	<div class="container">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-sm-5">
+                        <h4>Search the animal catalog</h4>
+						<form>
+							<div class="input-group">
+								<input class="form-control input-md" id="appendedInputButtons" type="text">
+								<span class="input-group-btn">
+									<button class="btn btn-md" type="button">Search</button>
+								</span>
+							</div>
+						</form>
+                    </div>
+                </div>
+				<div class="row">
 
-            <div class="caption">
-                <p>{{animal.description}}</p>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-    <a href="/animalia/animals/list"><h4>View All animals</h4></a>
-</div>
+
+                    {% for animal in popular%}
+					<div class="col-sm-4">
+						<!-- Product -->
+						<div class="shop-item">
+							<!-- Product Image -->
+							<div class="image">
+								<a href="/animalia/id/{{animal.id}}"><img src="{{animal.image.url}}" alt="{{animal.name}}"></a>
+							</div>
+							<!-- Product Title -->
+							<div class="title">
+								<h3><a href="/animalia/id/{{animal.id}}">{{animal.name}}</a></h3>
+							</div>
+							<!-- Product Description-->
+							<div class="description">
+								<p>{{animal.description | truncatechars:100}}</p>
+                            </div>
+							<!-- Add to Cart Button -->
+							<div class="actions">
+								<a href="/animalia/id/{{animal.id}}" class="btn">Read more...</a>
+							</div>
+						</div>
+						<!-- End Product -->
+					</div>
+                    {% endfor %}
+				</div>
+				<div class="pagination-wrapper ">
+					<ul class="pagination pagination-lg">
+
+
+        {% for page in popular.paginator.page_range %}
+    {% if forloop.counter != 1 %} | {% endif %}
+        <li><a href="?page={{ page}}">{{page}}</a></li>
+{% endfor %}
+
+        {% if fixtures.has_previous %}
+            <li><a href="?page={{ popular.previous_page_number }}">previous</a></li>
+        {% endif %}
+
+        <li><span class="current">
+            Page {{ popular.number }} of {{ popular.paginator.num_pages }}.
+        </span></li>
+
+        {% if popular.has_next %}
+           <li><a href="?page={{ popular.next_page_number }}">next</a></li>
+        {% endif %}
+
+						<!--<li class="disabled"><a href="#">Previous</a></li>-->
+						<!--<li class="active"><a href="#">1</a></li>-->
+						<!--<li><a href="#">2</a></li>-->
+						<!--<li><a href="#">3</a></li>-->
+						<!--<li><a href="#">4</a></li>-->
+						<!--<li><a href="#">5</a></li>-->
+						<!--<li><a href="#">6</a></li>-->
+						<!--<li><a href="#">7</a></li>-->
+						<!--<li><a href="#">8</a></li>-->
+						<!--<li><a href="#">9</a></li>-->
+						<!--<li><a href="#">10</a></li>-->
+						<!--<li><a href="#">Next</a></li>-->
+                        <li><a href="/animalia/animals/list">View All</a></li>
+					</ul>
+
+				</div>
+			</div>
+	    </div>
+
+
+
+
 {% endblock %}

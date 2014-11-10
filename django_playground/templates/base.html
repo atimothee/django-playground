@@ -49,17 +49,16 @@
  <nav id="mainmenu" class="mainmenu">
 					<ul>
 						<li class="logo-wrapper"><a href="/"><img src="img/mPurpose-logo.png" alt="Django playground"></a></li>
-						<li class="{{home_active}}">
-							<a href="/">Home</a>
-						</li>
-						<li><a href="{% url 'about' %}">About</a></li>
+						<li class="{{home_active}}"><a href="/">Home</a></li>
+						<li class="{{animalia_active}}"><a href="/animalia">Animalia</a></li>
+						<li class="{{tmdb_active}}"><a href="/movies">tmDB</a></li>
 
           {% if request.user.is_authenticated %}
-            <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
-            <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
+            <li class="{{my_profile_active}}"><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
+            <li class="{{logout_active}}"><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
           {% else %}
-            <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
-            <li><a href="{% url 'account_login' %}">{% trans "Log In" %}</a></li>
+            <li class="{{signup_active}}"><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
+            <li class="{{login_active}}"><a href="{% url 'account_login' %}">{% trans "Log In" %}</a></li>
           {% endif %}
 					</ul>
 				</nav>
