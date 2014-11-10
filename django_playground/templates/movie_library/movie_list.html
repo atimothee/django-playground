@@ -1,4 +1,5 @@
   {% extends "movie_library/base.html" %}
+          {% load bootstrap%}
         {% block title%}tmDB - Featured Movies{% endblock%}
         {% block content %}
 <!-- Page Title -->
@@ -15,12 +16,29 @@
 <div class="eshop-section section">
 	    	<div class="container">
 	    		<!--<h2>Listing With No Colors Information</h2>-->
+
 				<div class="row">
-                    {% for m in movies %}
+                    <div class="col-md-2">
+                        <p><b>Advanced Filter</b></p>
+                        <p>Genre</p>
+                        {{filter.form.genre}}
+                        <p>Director</p>
+                        {{filter.form.director}}
+                        <p>Writer</p>
+                        {{filter.form.writer}}
+                        <p>Studio</p>
+                        {{filter.form.studio}}
+                        <p>Actors/Actresses</p>
+                        {{filter.form.actor}}
+                        <p>Rating</p>
+                        {{filter.form.rating}}
+                    </div>
+                    <div class="col-md-10">
+                    {% for m in filter %}
                     <div class="col-sm-4">
 						<div class="shop-item">
 							<div class="image">
-								<a href="/movies/id/{{m.id}}"><img src="{{m.image.id}}" alt="{{m.title}}"></a>
+								<a href="/movies/id/{{m.id}}"><img src="{{m.image.url}}" alt="{{m.title}}"></a>
 							</div>
 							<div class="title">
 								<h3><a href="/movies/id/{{m.id}}">{{m.title}}</a></h3>
@@ -31,23 +49,24 @@
 						</div>
 					</div>
                     {% endfor %}
+                        </div>
 				</div>
-				<div class="pagination-wrapper ">
-					<ul class="pagination pagination-lg">
-						<li class="disabled"><a href="#">Previous</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">6</a></li>
-						<li><a href="#">7</a></li>
-						<li><a href="#">8</a></li>
-						<li><a href="#">9</a></li>
-						<li><a href="#">10</a></li>
-						<li><a href="#">Next</a></li>
-					</ul>
-				</div>
+				<!--<div class="pagination-wrapper ">-->
+					<!--<ul class="pagination pagination-lg">-->
+						<!--<li class="disabled"><a href="#">Previous</a></li>-->
+						<!--<li class="active"><a href="#">1</a></li>-->
+						<!--<li><a href="#">2</a></li>-->
+						<!--<li><a href="#">3</a></li>-->
+						<!--<li><a href="#">4</a></li>-->
+						<!--<li><a href="#">5</a></li>-->
+						<!--<li><a href="#">6</a></li>-->
+						<!--<li><a href="#">7</a></li>-->
+						<!--<li><a href="#">8</a></li>-->
+						<!--<li><a href="#">9</a></li>-->
+						<!--<li><a href="#">10</a></li>-->
+						<!--<li><a href="#">Next</a></li>-->
+					<!--</ul>-->
+				<!--</div>-->
 			</div>
 	    </div>
           {% endblock %}

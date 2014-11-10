@@ -7,7 +7,7 @@ from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from forms import MovieForm, ActorForm, GenreForm, DirectorForm, WriterForm
+from forms import MovieForm, ActorForm, GenreForm, DirectorForm, WriterForm, MovieFilter
 
 def home(request):
     movies_list = Movie.objects.filter(is_featured=True)
@@ -22,8 +22,8 @@ def home(request):
     return render_to_response('movie_library/home.html', {'home_active':'active', 'movies': movies}, RequestContext(request))
 
 def movie_list(request):
-
-    return render_to_response('movie_library/movie_list.html', {'movies_active':'active'})
+    f = MovieFilter(request.GET, queryset=Movie.objects.all())
+    return render_to_response('movie_library/movie_list.html', {'movies_active':'active', 'filter':f})
 
 def movie_directors(request):
     #directors = Director
