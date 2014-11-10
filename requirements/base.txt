@@ -36,3 +36,6 @@ django-avatar==2.0
 
 
 # Your custom requirements go here
+django-tinymce
+django-imagekit
+django-bootstrap-form==3.1

@@ -48,6 +48,9 @@ class Common(Configuration):
         'south',  # Database migration helpers:
         'crispy_forms',  # Form layouts
         'avatar',  # for user avatars
+        'tinymce',
+        'imagekit',
+        'bootstrapform'
     )
 
     # Apps specific for this project go here.
@@ -209,10 +212,10 @@ class Common(Configuration):
 
     ########## MEDIA CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-    MEDIA_ROOT = join(BASE_DIR, 'media')
+    MEDIA_ROOT = '/Users/Timo/django/uploads'
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
-    MEDIA_URL = '/media/'
+    MEDIA_URL = 'http://localhost:8000/media/'
     ########## END MEDIA CONFIGURATION
 
     ########## URL Configuration

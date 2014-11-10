@@ -21,7 +21,7 @@ class MovieDetail(DetailView):
     def get_object(self, queryset=None):
         pk = self.kwargs.get(self.pk_url_kwarg, None)
         try:
-            Movie.objects.filter(pk=pk).update(views=F('views')+1)
+            Movie.objects.filter(pk=pk)
             return Movie.objects.get(pk=pk)
         except Movie.DoesNotExist:
             raise Http404

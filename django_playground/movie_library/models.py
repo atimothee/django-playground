@@ -37,15 +37,32 @@ class Director(models.Model):
     def __unicode__(self):
         return self.first_name+" "+self.last_name
 
+class Rating(models.Model):
+    name = models.CharField(max_length=100)
+    explanation = models.TextField(blank=True)
+    def __unicode__(self):
+        return self.name
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=100)
     writer = models.ManyToManyField(Writer)
     actor = models.ManyToManyField(Actor)
     director = models.ManyToManyField(Director)
+    genre = models.ManyToManyField(Genre, blank=True, null=True)
+    trailer = models.URLField(blank=True)
     synopsis = models.TextField(blank=True)
     studio = models.ForeignKey(Studio, blank=True, null=True)
     release_year = models.IntegerField(blank=True)
     cover_art = models.ImageField(upload_to='cover_art')
     is_featured = models.BooleanField(default=False)
+    rating = models.ForeignKey(Rating, blank=True, null=True)
     def __unicode__(self):
         return self.title
+
+class Photo(models.Model):
+    image = models.ImageField(upload_to='photos')
+    caption = models.TextField(blank=True)
+    movie = models.ForeignKey(Movie)
+    def __unicode__(self):
+        return self.image.name
