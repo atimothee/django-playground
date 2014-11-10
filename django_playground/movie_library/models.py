@@ -27,6 +27,7 @@ class Actor(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
+    head_shot = models.ImageField(upload_to='head_shot/actors', blank=True)
     def __unicode__(self):
         return self.first_name+" "+self.last_name
 

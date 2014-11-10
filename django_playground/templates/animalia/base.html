@@ -1,0 +1,122 @@
+{% load staticfiles i18n %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+         <title>{%block title%}tmDB{% endblock %}</title>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/icomoon-social.css' %}" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+
+        <link href="{% static 'css/leaflet.css' %}" rel="stylesheet">
+		<!--[if lte IE 8]>
+        <link href="{% static 'css/leaflet.ie.css' %}" rel="stylesheet">
+		<![endif]-->
+        <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+        <script src="{% static 'js/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        
+
+        <!-- Navigation & Logo-->
+        <div class="mainmenu-wrapper">
+	        <div class="container">
+	        	<!--<div class="menuextras">-->
+					<!--<div class="extras">-->
+						<!--<ul>-->
+							<!--<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>3 items</b></a></li>-->
+							<!--<li>-->
+								<!--<div class="dropdown choose-country">-->
+									<!--<a class="#" data-toggle="dropdown" href="#"><img src="img/flags/gb.png" alt="Great Britain"> UK</a>-->
+									<!--<ul class="dropdown-menu" role="menu">-->
+										<!--<li role="menuitem"><a href="#"><img src="img/flags/us.png" alt="United States"> US</a></li>-->
+										<!--<li role="menuitem"><a href="#"><img src="img/flags/de.png" alt="Germany"> DE</a></li>-->
+										<!--<li role="menuitem"><a href="#"><img src="img/flags/es.png" alt="Spain"> ES</a></li>-->
+									<!--</ul>-->
+								<!--</div>-->
+							<!--</li>-->
+			        		<!--<li><a href="page-login.html">Login</a></li>-->
+			        	<!--</ul>-->
+					<!--</div>-->
+		        <!--</div>-->
+		        <nav id="mainmenu" class="mainmenu">
+					<ul>
+						<li class="logo-wrapper"><a href="/movies"><img src="img/mPurpose-logo.png" alt="Animalia"></a></li>
+						<li class="{{home_active}}">
+							<a href="/animalia">Home</a>
+						</li>
+						<li class="{{movies_active}}">
+							<a href="/animalia/animals/list">Catalogue</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+        {% block content %}
+        {% endblock%}
+
+	    <!-- Footer -->
+	    <div class="footer">
+	    	<div class="container">
+		    	<div class="row">
+
+		    		<div class="col-footer col-md-3 col-xs-6">
+		    			<h3>Navigate</h3>
+		    			<ul class="no-list-style footer-navigate-section">
+		    				<li><a href="/animalia">Home</a></li>
+		    				<li><a href="/animalia/animals/list">Catalogue</a></li>
+		    			</ul>
+		    		</div>
+		    		
+		    		<div class="col-footer col-md-4 col-xs-6">
+		    			<h3>Contacts</h3>
+		    			<p class="contact-us-details">
+	        				<b>Address:</b> RM B3-28 Anx, Lumumba Hall, Makerere University<br/>
+	        				<b>Phone:</b> +256 779 685241<br/>
+	        				<b>Email:</b> <a href="mailto:getintoutch@yourcompanydomain.com">hello@timothyasiimwe.me</a>
+	        			</p>
+		    		</div>
+		    		<div class="col-footer col-md-2 col-xs-6">
+		    			<h3>Stay Connected</h3>
+		    			<ul class="footer-stay-connected no-list-style">
+		    				<li><a href="#" class="facebook"></a></li>
+		    				<li><a href="#" class="twitter"></a></li>
+		    				<li><a href="#" class="googleplus"></a></li>
+		    			</ul>
+		    		</div>
+		    	</div>
+		    	<div class="row">
+		    		<div class="col-md-12">
+		    			<div class="footer-copyright">&copy; 2014 Timothy Asiimwe. All rights reserved.</div>
+		    		</div>
+		    	</div>
+		    </div>
+	    </div>
+
+        <!-- Javascripts -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/static/js/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+        <script src="/static/js/jquery.fitvids.js"></script>
+        <script src="/static/js/jquery.sequence-min.js"></script>
+        <script src="/static/js/jquery.bxslider.js"></script>
+        <script src="/static/js/main-menu.js"></script>
+        <script src="/static/js/template.js"></script>
+
+    </body>
+</html>
