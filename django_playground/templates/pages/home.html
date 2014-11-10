@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+        {% load staticfiles i18n %}
         {% block content %}
 
         <div class="section">
@@ -8,7 +9,7 @@
 					<div class="col-md-4 col-sm-6">
 						<div class="portfolio-item">
 							<div class="portfolio-image">
-								<a href="/animalia"><img src="img/portfolio1.jpg" alt="Animalia"></a>
+								<a href="/animalia"><img src="{% static 'img/animalia.png' %}" alt="Animalia"></a>
 							</div>
 							<div class="portfolio-info">
 								<ul>
@@ -22,7 +23,7 @@
 					<div class="col-md-4 col-sm-6">
 						<div class="portfolio-item">
 							<div class="portfolio-image">
-								<a href="page-portfolio-item.html"><img src="img/portfolio2.jpg" alt="tmDB"></a>
+								<a href="page-portfolio-item.html"><img src="{% static 'img/movie_lib.png' %}" alt="tmDB"></a>
 							</div>
 							<div class="portfolio-info">
 								<ul>

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from animalia.models import Animal, Phylum, Order, Family, Genus, Species, Class
-from movie_library.models import Movie, Director, Genre, Studio
+from movie_library.models import Movie, Director, Genre, Studio, Actor, Writer
 
 class CustomAdminSite(admin.sites.AdminSite):
     site_header = "Playground Administration"
@@ -23,4 +23,6 @@ site.register(Movie)
 site.register(Director)
 site.register(Genre)
 site.register(Studio)
+site.register(Actor)
+site.register(Writer)
 

@@ -6,7 +6,7 @@ from django.db.models import F
 from django.template import RequestContext
 
 def home(request):
-    return render_to_response('movie_library/home.html', {'home_active':'active', 'features': Movie.objects.all().order_by("-views")[:5]}, RequestContext(request))
+    return render_to_response('movie_library/home.html', {'home_active':'active', 'movies': Movie.objects.all().order_by("-views")[:5]}, RequestContext(request))
 
 def movie_list(request):
     return render_to_response('movie_library/movie_list.html', {'movies_active':'active'})
