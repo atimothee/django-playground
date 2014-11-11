@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from forms import AnimalFilter
 
 def home(request):
-    animals_list = Animal.objects.all().order_by("views")[:5]
+    animals_list = Animal.objects.all().order_by("-views")[:5]
     paginator = Paginator(animals_list, 6)
     page = request.GET.get('page')
     try:
