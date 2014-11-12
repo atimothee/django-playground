@@ -310,13 +310,6 @@ class Local(Common):
     ########## end django-debug-toolbar
 
     ########## Your local stuff: Below this line define 3rd party libary settings
-    DEBUG = True
-    TEMPLATE_DEBUG = True
-    EMAIL_HOST = 'smtp.sendgrid.net'
-    EMAIL_HOST_USER = 'atimothee'
-    EMAIL_HOST_PASSWORD = 'atimothy3'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
 
 
 class Production(Common):
