@@ -20,7 +20,7 @@ def home(request):
     return render_to_response('animalia/home.html', {'popular': animals, 'home_active': 'active'}, RequestContext(request))
 
 def animal_list(request):
-    animals = Animal.objects.filter(name__icontains=request.GET.get('name', ''), species__genus__family__name__icontains=request.GET.get('family', ''))
+    animals = Animal.objects.filter(name__icontains=request.GET.get('name', ''), description__icontains=request.GET.get('name', ''), species__genus__family__name__icontains=request.GET.get('family', ''))
     return render_to_response('animalia/animal_list.html', {'animals': animals, 'catalogue_active': 'active',})
 
 class AnimalDetail(DetailView):
